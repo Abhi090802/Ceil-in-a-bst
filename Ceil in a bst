@@ -1,0 +1,37 @@
+Recursive Way:
+/* TC=O(LOG2(N)) SC=O(H)
+void helper(Node*&root,int key,int &ans)
+{
+    if(!root) return ; 
+    if(root->data<key)
+    helper(root->right,key,ans); 
+    else {
+       ans=min(ans,root->data); 
+       helper(root->left,key,ans);
+    }
+}
+int findCeil(Node* root, int input) {
+    if (root == NULL) return -1;
+     int ans=INT_MAX; 
+      helper(root,input,ans); 
+     return ans==INT_MAX?-1:ans;
+}
+*/
+
+Iterative Way: 
+/* TC=O(LOG2(N)) SC=O(H)
+int findCeil(Node* root, int key) {
+   int ans=-1; 
+   while(root)
+   {
+       if(root->data==key) 
+       return root->data; 
+       if(root->data<key)
+            root=root->right; 
+         else if(root->data>key){
+             ans=root->data; 
+             root=root->left; }
+   }
+   return ans;
+}
+*/
